@@ -1,5 +1,4 @@
 # Marquee.java
-![Scrolling Marquee](./marquee.png)
 
 This is a small example of me exploiting the carriage return character, `\r` in
 order to create scrolling text in the cli. I have also tried to use
@@ -12,3 +11,5 @@ To run the code, `cd` into this directory and run:
 javac -classpath .:com/clackjones/fun/ com/clackjones/fun/Marquee*.java 
 java  -classpath .:com/clackjones/fun/ com/clackjones/fun/Marquee
 ```
+
+![Scrolling Marquee](./marquee.png)
