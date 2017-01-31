@@ -3,7 +3,7 @@ package com.clackjones.fun;
 public class Marquee {
     public static void main (String args[]) {
 	long scrollTime = 2000; //ms
-	int width = 40;
+	int width = 80;
 	String[] msgs = new String[] {
 	    "Lorem ipsum dolor sit amet",
 	    "consectetur adipiscing elit",
@@ -18,7 +18,10 @@ public class Marquee {
 	    System.out.print(m.next());
 	    try {
 		long after = System.currentTimeMillis();
-		Thread.sleep(iterLength - after + before);
+		long difference = iterLength - after + before;
+		if (difference > 0) {
+			Thread.sleep(difference);
+		}
 	    } catch (InterruptedException i) { System.err.println(i); }
 	}
     }
