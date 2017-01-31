@@ -1,5 +1,6 @@
 # Marquee.java
 ![Scrolling Marquee](./marquee.png)
+
 This is a small example of me exploiting the carriage return character, `\r` in
 order to create scrolling text in the cli. I have also tried to use
 `Thread.sleep(millis)` in order to ensure that each sweep takes the same amount
