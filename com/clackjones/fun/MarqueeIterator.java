@@ -11,48 +11,45 @@ public class MarqueeIterator implements Iterator<String> {
     private boolean isRising;
 
     public MarqueeIterator(String[] messages, int width) {
-	this.messages = messages;
-	this.width = width;
-	this.currentMsg = 0;
-	this.isRising = true;
+		this.messages = messages;
+		this.width = width;
+		this.currentMsg = 0;
+		this.isRising = true;
     }
 
     public String next() {
-	if (! isSwitchMsgTime()) {
-	    currentIndent = isRising ? currentIndent + 1 : currentIndent - 1;
-	} else {
-	    currentMsg = (currentMsg + 1) % messages.length;
-	    currentIndent = isRising
-		? width - messages[currentMsg].length() - 1
-		: 1;
-	    isRising = !isRising;
-	}
+		if (! isSwitchMsgTime()) {
+			currentIndent = isRising ? currentIndent + 1 : currentIndent - 1;
+		} else {
+			currentMsg = (currentMsg + 1) % messages.length;
+			currentIndent = isRising
+			? width - messages[currentMsg].length() - 1
+			: 1;
+			isRising = !isRising;
+		}
 
-	return String.format("\r%s%s%s", createWhitespaceLeft(), messages[currentMsg],
-		      createWhitespaceRight());
+		return String.format("\r%s%s%s", createWhitespaceLeft(), messages[currentMsg],
+			createWhitespaceRight());
     }
 
     private String createWhitespaceRight() {
-	int rightSpace = width - messages[currentMsg].length() - currentIndent;
-	String x = "";
-	for (int i = 0; i < rightSpace; ++i) {
-	    x += " ";
-	}
+		int rightSpace = width - messages[currentMsg].length() - currentIndent;
+		char[] spaces = new char[rightSpace];
+		Arrays.fill(spaces, ' ');
 
-	return x;
+		return new String(spaces);
     }
     
     private String createWhitespaceLeft() {
-	String x = "";
-	for (int i = 0; i < currentIndent; ++i) {
-	    x += " ";
-	}
+		String x = "";
+		char[] spaces = new char[currentIndent];
+		Arrays.fill(spaces, ' ');
 
-	return x;
+		return new String(spaces);
     }
 	
     public boolean isSwitchMsgTime() {
-	return currentIndent == 0 || currentIndent + messages[currentMsg].length()  == width;
+		return currentIndent == 0 || currentIndent + messages[currentMsg].length()  == width;
     }
 
     public boolean hasNext() {
